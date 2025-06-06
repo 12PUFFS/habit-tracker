@@ -1,0 +1,136 @@
+/* styles.css */
+:root {
+  --primary-color: #4361ee;
+  --secondary-color: #3f37c9;
+  --accent-color: #f72585;
+  --text-color: #2b2d42;
+  --light-gray: #f8f9fa;
+  --border-radius: 12px;
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+#root {
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 0 20px;
+}
+
+.container {
+  background: white;
+  border-radius: var(--border-radius);
+  box-shadow: var(--box-shadow);
+  padding: 2rem;
+  /* display: flex;
+  flex-direction: column; */
+}
+
+.input-container {
+  position: relative;
+}
+
+h1 {
+  color: var(--primary-color);
+  text-align: center;
+  margin-bottom: 2rem;
+  font-size: 2.5rem;
+}
+
+input {
+  flex: 1;
+  padding: 15px 20px;
+  border: 2px solid #e9ecef;
+  border-radius: var(--border-radius);
+  font-size: 1rem;
+  width: 94%;
+  transition: all 0.3s ease;
+  margin-bottom: 50px;
+}
+
+input:focus {
+  outline: none;
+  border-color: var(--primary-color);
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.btn {
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: var(--border-radius);
+  padding: 16px 20px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.btn:hover {
+  background-color: var(--secondary-color);
+  /* transform: translateY(-2px); */
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 15px;
+  margin-bottom: 10px;
+  background-color: var(--light-gray);
+  border-radius: var(--border-radius);
+  transition: all 0.3s ease;
+}
+
+li:hover {
+  transform: translateX(5px);
+  box-shadow: var(--box-shadow);
+}
+
+.habit-text {
+  font-size: 1.1rem;
+  color: var(--text-color);
+  flex: 1;
+}
+
+span {
+  background: none;
+  border: none;
+  color: #adb5bd;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  padding: 0 10px;
+  display: flex;
+  align-items: center;
+}
+
+/* .delete-btn:hover {
+  color: var(--accent-color);
+  transform: scale(1.2);
+}
+
+.empty-state {
+  text-align: center;
+  color: #adb5bd;
+  padding: 2rem;
+  font-size: 1.2rem;
+} */
+
+@media (max-width: 768px) {
+  .input-container {
+    flex-direction: column;
+  }
+
+  .btn {
+    width: 100%;
+    padding: 15px;
+  }
+}
