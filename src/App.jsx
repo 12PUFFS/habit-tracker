@@ -24,22 +24,22 @@ function App() {
         <input
           onChange={(e) => setInputValue(e.target.value)}
           type="text"
-          placeholder="Новая привычка"
+          placeholder="Новая привычка ..."
           value={inputValue}
           onKeyPress={(e) => e.key === 'Enter' && addHabits()}
         />
         <button className="btn" onClick={addHabits}>
           Добавить привычку
         </button>
-        <ul>
-          {habits.map((habit) => (
-            <li key={habit.id}>
-              {habit.text}
-              <span onClick={() => deleteHabits(habit.id)}> ×</span>
-            </li>
-          ))}
-        </ul>
       </div>
+      <ul className="ulitka">
+        {habits.map((habit) => (
+          <li key={habit.id}>
+            {habit.text}
+            <span onClick={() => deleteHabits(habit.id)}> ×</span>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
