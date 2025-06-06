@@ -13,6 +13,7 @@
   max-width: 800px;
   margin: 2rem auto;
   padding: 0 20px;
+  font-family: 'Noto Sans', sans-serif;
 }
 
 .container {
@@ -87,6 +88,7 @@ li {
   background-color: var(--light-gray);
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
+  /* font-family: sans-serif; */
 }
 
 li:hover {
@@ -134,3 +136,9 @@ span {
     padding: 15px;
   }
 }
+/* 
+@media (max-width: 394px) {
+  .btn {
+    padding: 15px;
+  }
+} */
