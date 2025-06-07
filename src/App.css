@@ -16,6 +16,39 @@
   font-family: 'Noto Sans', sans-serif;
 }
 
+/* Добавьте в начало */
+html,
+body,
+#root,
+.app-container {
+  height: 100%;
+}
+
+.app-container {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Занимает всю высоту viewport */
+}
+
+.content {
+  flex: 1; /* Занимает все доступное пространство, выталкивая футер вниз */
+}
+
+/* Стили для футера */
+.footer {
+  background-color: var(--primary-color);
+  color: white;
+  text-align: center;
+  padding: 2rem;
+  margin-top: auto; /* Дополнительная страховка */
+}
+
+.footer a {
+  color: white;
+  text-decoration: none;
+  padding-left: 3px;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -138,7 +171,14 @@ span {
 
   .btn {
     /* width: 100%; */
-    padding: 15px;
+    padding: 2.4%;
+    /* display: block; */
+  }
+}
+
+@media (max-width: 426px) {
+  .btn {
+    display: none;
   }
 }
 

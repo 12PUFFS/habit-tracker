@@ -19,27 +19,40 @@ function App() {
   };
 
   return (
-    <div className="container">
-      <div className="input-container">
-        <input
-          onChange={(e) => setInputValue(e.target.value)}
-          type="text"
-          placeholder="Новая привычка ..."
-          value={inputValue}
-          onKeyPress={(e) => e.key === 'Enter' && addHabits()}
-        />
-        <button className="btn" onClick={addHabits}>
-          Добавить привычку
-        </button>
+    <div className="app-container">
+      <div className="content">
+        <div className="container">
+          <div className="input-container">
+            <input
+              onChange={(e) => setInputValue(e.target.value)}
+              type="text"
+              placeholder="Новая привычка ..."
+              value={inputValue}
+              onKeyPress={(e) => e.key === 'Enter' && addHabits()}
+            />
+            <button className="btn" onClick={addHabits}>
+              Добавить привычку
+            </button>
+          </div>
+          <ul className="ulitka">
+            {habits.map((habit) => (
+              <li key={habit.id}>
+                {habit.text}
+                <span onClick={() => deleteHabits(habit.id)}> ×</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
-      <ul className="ulitka">
-        {habits.map((habit) => (
-          <li key={habit.id}>
-            {habit.text}
-            <span onClick={() => deleteHabits(habit.id)}> ×</span>
-          </li>
-        ))}
-      </ul>
+      <footer className="footer">
+        <p>© 2025 Приложение для привычек</p>
+        <p>
+          Наш
+          <a target="blank" href="https://github.com/12PUFFS/habit-tracker">
+            GitHub
+          </a>
+        </p>
+      </footer>
     </div>
   );
 }
