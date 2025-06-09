@@ -153,7 +153,9 @@ input:focus {
 ul {
   list-style: none;
   padding: 0;
-  margin: 0;
+
+  box-shadow: var(--box-shadow);
+  padding: 10px;
 }
 
 li {
@@ -167,6 +169,14 @@ li {
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
   /* font-family: sans-serif; */
+}
+
+.empty-state {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
 }
 
 .divs {
@@ -238,6 +248,14 @@ span {
 @media (max-width: 394px) {
   .btn {
     display: none;
+  }
+
+  .filter {
+    justify-content: center;
+  }
+
+  ul {
+    padding: 10px;
   }
 
   input {

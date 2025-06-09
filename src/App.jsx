@@ -1,10 +1,18 @@
+import { useEffect } from 'react';
 import { useState } from 'react';
 // import Header from './components/Header';
 import './App.css';
 
 function App() {
   const [inputValue, setInputValue] = useState('');
-  const [habits, setHabits] = useState([]);
+  const [habits, setHabits] = useState(() => {
+    // Загружаем привычки из localStorage при инициализации
+    const savedHabits = localStorage.getItem('habits');
+    return savedHabits ? JSON.parse(savedHabits) : [];
+  });
+  useEffect(() => {
+    localStorage.setItem('habits', JSON.stringify(habits));
+  }, [habits]);
 
   const addHabits = () => {
     if (inputValue.trim()) {
@@ -26,12 +34,12 @@ function App() {
             <input
               onChange={(e) => setInputValue(e.target.value)}
               type="text"
-              placeholder="Новая привычка"
+              placeholder="Новая задача"
               value={inputValue}
               onKeyPress={(e) => e.key === 'Enter' && addHabits()}
             />
             <button className="btn" onClick={addHabits}>
-              Добавить привычку
+              Добавить задачу
             </button>
             <div className="filter">
               <div className="link active">
@@ -45,27 +53,33 @@ function App() {
               </div>
             </div>
           </div>
-          <ul>
-            {habits.map((habit) => (
-              <li key={habit.id}>
-                {habit.text}
-                <div className="divs">
-                  <span className="done">✓</span>
-                  <span
-                    className="delete"
-                    onClick={() => deleteHabits(habit.id)}
-                  >
-                    {' '}
-                    ×
-                  </span>
-                </div>
-              </li>
-            ))}
-          </ul>
+
+          {habits.length === 0 ? (
+            <div className="empty-state">
+              <p>Список задач пуст. Добавьте первую задачу!</p>
+            </div>
+          ) : (
+            <ul>
+              {habits.map((habit) => (
+                <li key={habit.id}>
+                  {habit.text}
+                  <div className="divs">
+                    <span className="done">✓</span>
+                    <span
+                      className="delete"
+                      onClick={() => deleteHabits(habit.id)}
+                    >
+                      ×
+                    </span>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
       <footer className="footer">
-        <p>© 2025 Приложение для привычек</p>
+        <p>© 2025 Приложение для задач</p>
         <p>
           Наш
           <a target="blank" href="https://github.com/12PUFFS/habit-tracker">
