@@ -33,12 +33,32 @@ function App() {
             <button className="btn" onClick={addHabits}>
               Добавить привычку
             </button>
+            <div className="filter">
+              <div className="link active">
+                <a href="">Важные</a>
+              </div>
+              <div className="link">
+                <a href="">Выполненные</a>
+              </div>
+              <div className="link">
+                <a href="">Все</a>
+              </div>
+            </div>
           </div>
-          <ul className="ulitka">
+          <ul>
             {habits.map((habit) => (
               <li key={habit.id}>
                 {habit.text}
-                <span onClick={() => deleteHabits(habit.id)}> ×</span>
+                <div className="divs">
+                  <span className="done">✓</span>
+                  <span
+                    className="delete"
+                    onClick={() => deleteHabits(habit.id)}
+                  >
+                    {' '}
+                    ×
+                  </span>
+                </div>
               </li>
             ))}
           </ul>
