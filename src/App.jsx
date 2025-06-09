@@ -98,7 +98,7 @@ function App() {
             <div className="empty-state">
               <p>
                 {activeFilter === 'completed'
-                  ? 'Нет выполненных привычек'
+                  ? 'Нет выполненных задач'
                   : 'Список задач пуст. Добавьте первую задачу!'}
               </p>
             </div>
