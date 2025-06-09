@@ -35,13 +35,13 @@ function App() {
             </button>
             <div className="filter">
               <div className="link active">
-                <a href="">Важные</a>
+                <a href="">Все</a>
               </div>
               <div className="link">
                 <a href="">Выполненные</a>
               </div>
               <div className="link">
-                <a href="">Все</a>
+                <a href="">Важные</a>
               </div>
             </div>
           </div>
