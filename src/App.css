@@ -333,13 +333,14 @@ li.completed:hover .habit-text {
   
   .link{
     width: 100%;
-    margin: 0;
-    border-radius: 0;
+    margin: 10px;
+   padding: 5px;
+
    
   }
 
 .link:hover{
-  border-radius: 0;
+ padding: 5px;
 }
 
   ul {
