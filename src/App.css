@@ -88,13 +88,13 @@ body,
   font-weight: 300;
 }
 
-/* .active {
+.active {
   color: white;
   padding: 10px;
   background: var(--primary-color);
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
-} */
+}
 
 .link a:hover {
   color: white;
@@ -240,7 +240,16 @@ span {
     display: none;
   }
 
-  .container {
-    padding: 1rem 0;
+  input {
+    margin-bottom: 20px;
   }
+
+  .filter {
+    gap: 10px;
+    font-size: 15px;
+  }
+
+  /* .container {
+    padding: 1rem 0;
+  } */
 }
