@@ -85,7 +85,7 @@ body,
 .filter {
   gap: 10px;
   display: flex;
-  justify-content: end;
+  /* justify-content: end; */
   align-items:normal;
 }
 
@@ -96,7 +96,7 @@ body,
   align-items: center;
   display: flex;
   /* width: 100%; */
-  
+  padding: 10px;
  margin: 10px 10px;
 }
 
@@ -315,6 +315,7 @@ li.completed:hover .habit-text {
   .link{
     width: 100%;
     justify-content: center;
+    margin: 0;
     /* gap: 0; */
   }
 }
@@ -327,9 +328,19 @@ li.completed:hover .habit-text {
   .filter {
     justify-content: space-between;
     margin: 0 0px;
-   gap: 0px;
-    width: 100%;
+  
   }
+  
+  .link{
+    width: 100%;
+    margin: 0;
+    border-radius: 0;
+   
+  }
+
+.link:hover{
+  border-radius: 0;
+}
 
   ul {
     padding: 10px;
@@ -340,7 +351,7 @@ li.completed:hover .habit-text {
   }
 
   .filter {
-    gap: 10px;
+    /* gap: 10px; */
     font-size: 15px;
   }
 
