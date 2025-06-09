@@ -26,7 +26,7 @@ function App() {
             <input
               onChange={(e) => setInputValue(e.target.value)}
               type="text"
-              placeholder="Новая привычка ..."
+              placeholder="Новая привычка"
               value={inputValue}
               onKeyPress={(e) => e.key === 'Enter' && addHabits()}
             />
