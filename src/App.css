@@ -186,10 +186,15 @@ li {
   justify-content: center;
 }
 
+li {
+  background: var(--primary-color);
+  color: white;
+}
+
 li:hover {
   transform: translateX(5px);
-  box-shadow: var(--box-shadow);
-  background-color: var(--primary-color);
+  /* box-shadow: var(--box-shadow);
+  background-color: var(--primary-color); */
   color: white;
 }
 
@@ -209,6 +214,39 @@ span {
   padding: 0 10px;
   display: flex;
   align-items: center;
+}
+
+/* Добавьте эти стили в ваш App.css */
+
+.completed {
+  color: white;
+  /* position: relative; */
+  background: #4caf50;
+}
+
+.completed .habit-text {
+  color: white;
+}
+
+.done.completed {
+  /* color: #4caf50; Зеленый цвет для выполненных галочек */
+  font-weight: bold;
+}
+
+.done:hover,
+.delete:hover {
+  transform: scale(1.2);
+}
+
+.habit-text {
+  flex: 1;
+  transition: all 0.3s ease;
+  color: white;
+}
+
+li.completed:hover .habit-text {
+  opacity: 0.8;
+  color: white;
 }
 
 /* .delete-btn:hover {
