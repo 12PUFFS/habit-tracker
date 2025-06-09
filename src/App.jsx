@@ -63,12 +63,12 @@ function App() {
             <input
               onChange={(e) => setInputValue(e.target.value)}
               type="text"
-              placeholder="Новая привычка"
+              placeholder="Новая задача"
               value={inputValue}
               onKeyPress={(e) => e.key === 'Enter' && addHabits()}
             />
             <button className="btn" onClick={addHabits}>
-              Добавить привычку
+              Добавить задачу
             </button>
             <div className="filter">
               <div
@@ -99,7 +99,7 @@ function App() {
               <p>
                 {activeFilter === 'completed'
                   ? 'Нет выполненных привычек'
-                  : 'Список привычек пуст. Добавьте первую привычку!'}
+                  : 'Список задач пуст. Добавьте первую задачу!'}
               </p>
             </div>
           ) : (
@@ -139,7 +139,7 @@ function App() {
         </div>
       </div>
       <footer className="footer">
-        <p>© 2025 Приложение для привычек</p>
+        <p>© 2025 Приложение для задач</p>
         <p>
           Наш
           <a target="blank" href="https://github.com/12PUFFS/habit-tracker">
