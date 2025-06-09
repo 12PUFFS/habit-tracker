@@ -42,7 +42,7 @@ body,
 
 /* Стили для футера */
 .footer {
-  background-color: var(--primary-color);
+  background-color: var(--secondary-color);
   color: white;
   text-align: center;
   padding: 2rem;
@@ -53,6 +53,10 @@ body,
   color: white;
   text-decoration: none;
   padding-left: 3px;
+}
+
+.footer p:not(:last-child) {
+  padding-bottom: 10px;
 }
 
 * {
@@ -70,22 +74,37 @@ body,
 .input-container {
   border-radius: var(--border-radius);
   position: relative;
-  /* box-shadow: var(--box-shadow); */
-
+  box-shadow: var(--box-shadow);
   margin-bottom: 30px;
+  /* padding-bottom: 10px; */
+  display: flex;
+  flex-direction: column;
+  
 }
 
 .filter {
-  gap: 70px;
+  gap: 10px;
   display: flex;
   justify-content: end;
-  align-items: center;
+  align-items:normal;
 }
 
-.link a {
+.link  {
   text-decoration: none;
   color: var(--box-shadow);
   font-weight: 300;
+  align-items: center;
+  display: flex;
+  /* width: 100%; */
+  
+ margin: 10px 10px;
+}
+
+.link{
+  align-items: center;
+  display: flex;
+  /* text-align: center;
+  justify-content: center; */
 }
 
 .active {
@@ -120,7 +139,7 @@ input {
   width: -webkit-fill-available;
   transition: all 0.3s ease;
   box-shadow: var(--box-shadow);
-  margin-bottom: 50px;
+  s
 }
 
 input:focus {
@@ -274,6 +293,7 @@ li.completed:hover .habit-text {
 
   .filter {
     gap: 30px;
+    margin: 0 5px;
   }
 
   .btn {
@@ -287,6 +307,16 @@ li.completed:hover .habit-text {
   .btn {
     display: none;
   }
+  .filter{
+    justify-content: space-between;
+    gap: 0;
+    margin: 10px ;
+  }
+  .link{
+    width: 100%;
+    justify-content: center;
+    /* gap: 0; */
+  }
 }
 
 @media (max-width: 394px) {
@@ -295,7 +325,10 @@ li.completed:hover .habit-text {
   }
 
   .filter {
-    justify-content: center;
+    justify-content: space-between;
+    margin: 0 0px;
+   gap: 0px;
+    width: 100%;
   }
 
   ul {
@@ -314,4 +347,21 @@ li.completed:hover .habit-text {
   /* .container {
     padding: 1rem 0;
   } */
+}
+
+
+@media (max-width: 321px) {
+  .filter{
+    justify-content: center;
+    margin: 0;
+    /* width: 100%; */
+    
+  }
+
+  .link{
+    width: 100%;
+    gap: 0;
+    align-items: center;
+  }
+
 }
