@@ -96,10 +96,10 @@ body,
   transition: all 0.3s ease;
 }
 
-.link a:hover {
+.link:hover {
   color: white;
   padding: 10px;
-  background: var(--primary-color);
+  background: var(--secondary-color);
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
 }
@@ -195,6 +195,7 @@ li:hover {
   transform: translateX(5px);
   /* box-shadow: var(--box-shadow);
   background-color: var(--primary-color); */
+  background: var(--secondary-color);
   color: white;
 }
 
@@ -224,13 +225,18 @@ span {
   background: #4caf50;
 }
 
+.completed:hover {
+  background: #439a46;
+}
+
 .completed .habit-text {
   color: white;
 }
 
 .done.completed {
-  /* color: #4caf50; Зеленый цвет для выполненных галочек */
+  background: none;
   font-weight: bold;
+  width: ;
 }
 
 .done:hover,
