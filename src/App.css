@@ -79,17 +79,16 @@ body,
   /* padding-bottom: 10px; */
   display: flex;
   flex-direction: column;
-  
 }
 
 .filter {
-  gap: 10px;
+  /* gap: 10px; */
   display: flex;
   /* justify-content: end; */
-  align-items:normal;
+  align-items: normal;
 }
 
-.link  {
+.link {
   text-decoration: none;
   color: var(--box-shadow);
   font-weight: 300;
@@ -97,22 +96,26 @@ body,
   display: flex;
   /* width: 100%; */
   padding: 10px;
- margin: 10px 10px;
+  /* margin: 10px 10px; */
 }
 
-.link{
+.link {
   align-items: center;
   display: flex;
   /* text-align: center;
   justify-content: center; */
+  /* padding: 20px; */
+  width: 150px;
+  justify-content: center;
 }
 
 .active {
   color: white;
-  padding: 10px;
+  /* padding: 10px; */
   background: var(--primary-color);
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
+  /* justify-content: center; */
 }
 
 .link:hover {
@@ -139,7 +142,6 @@ input {
   width: -webkit-fill-available;
   transition: all 0.3s ease;
   box-shadow: var(--box-shadow);
-  s
 }
 
 input:focus {
@@ -180,14 +182,13 @@ ul {
 li {
   display: flex;
   align-items: center;
-  /* justify-content: space-between; */
+
   padding: 15px;
   /* margin-right: auto; */
   margin-bottom: 10px;
   background-color: var(--light-gray);
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
-  /* font-family: sans-serif; */
 }
 
 .empty-state {
@@ -212,8 +213,7 @@ li {
 
 li:hover {
   transform: translateX(5px);
-  /* box-shadow: var(--box-shadow);
-  background-color: var(--primary-color); */
+
   background: var(--secondary-color);
   color: white;
 }
@@ -255,7 +255,6 @@ span {
 .done.completed {
   background: none;
   font-weight: bold;
-  width: ;
 }
 
 .done:hover,
@@ -307,12 +306,12 @@ li.completed:hover .habit-text {
   .btn {
     display: none;
   }
-  .filter{
+  .filter {
     justify-content: space-between;
     gap: 0;
-    margin: 10px ;
+    margin: 10px;
   }
-  .link{
+  .link {
     width: 100%;
     justify-content: center;
     margin: 0;
@@ -328,20 +327,31 @@ li.completed:hover .habit-text {
   .filter {
     justify-content: space-between;
     margin: 0 0px;
-  
   }
-  
-  .link{
+
+  .input-container {
+    border-radius: 0;
+  }
+
+  .container {
+    padding: 0;
+  }
+
+  input {
+    border-radius: 0;
+  }
+
+  .link {
     width: 100%;
-    margin: 10px;
-   padding: 5px;
-
-   
+    /* margin: 10px; */
+    padding: 5px;
+    border-radius: 0;
   }
 
-.link:hover{
- padding: 5px;
-}
+  .link:hover {
+    padding: 5px;
+    border-radius: 0;
+  }
 
   ul {
     padding: 10px;
@@ -361,19 +371,16 @@ li.completed:hover .habit-text {
   } */
 }
 
-
 @media (max-width: 321px) {
-  .filter{
+  .filter {
     justify-content: center;
     margin: 0;
     /* width: 100%; */
-    
   }
 
-  .link{
+  .link {
     width: 100%;
     gap: 0;
     align-items: center;
   }
-
 }
