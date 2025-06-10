@@ -59,11 +59,11 @@ body,
   margin-top: auto; /* Дополнительная страховка */
 }
 
-/* Стили для важных задач */
-/* .important {
-  border-left: 4px solid #f72585;
-  background-color: rgba(247, 37, 133, 0.05);
-} */
+
+.important {
+  /* border-left: 4px solid #f72585;
+  background-color: rgba(247, 37, 133, 0.05); */
+}
 
  .star {
   color: #adb5bd;
@@ -144,6 +144,8 @@ body,
   cursor: pointer;
 }
 
+
+
 .link {
   align-items: center;
   display: flex;
@@ -154,10 +156,14 @@ body,
   justify-content: center;
 }
 
-.active {
+.star.active{
+  background: none;
+}
+
+ .active {
   color: white;
   /* padding: 10px; */
-  /* background: var(--primary-color); */
+  background: var(--primary-color);
   border-radius: var(--border-radius);
   transition: all 0.3s ease;
   /* justify-content: center; */
@@ -225,6 +231,8 @@ ul {
   box-shadow: var(--box-shadow);
   padding: 10px;
 }
+
+
 
 li {
   display: flex;
@@ -379,30 +387,32 @@ li.completed:hover .habit-text {
   .filter {
     justify-content: space-between;
     margin: 0 0px;
+    /* flex-wrap: wrap; */
   }
 
-  .input-container {
+  /* .input-container {
     border-radius: 0;
-  }
+  } */
 
   .container {
-    padding: 0;
+    padding: 0.5rem;
   }
 
-  input {
+  /* input {
     border-radius: 0;
-  }
+  } */
 
   .link {
     width: 100%;
-    /* margin: 10px; */
+    margin: 10px 5px;
     padding: 5px;
-    border-radius: 0;
+
   }
 
   .link:hover {
     padding: 5px;
-    border-radius: 0;
+    
+
   }
 
   ul {
