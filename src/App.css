@@ -11,7 +11,7 @@
 
 :root {
   --primary-color: #1d3cc8;
-  --secondary-color: #3f37c9;
+  /* --secondary-color: #676a79e3; */
   --text-color: #2b2d42;
   --light-gray: #f8f9fa;
   --border-radius: 12px;
@@ -52,7 +52,7 @@ body,
 
 /* Стили для футера */
 .footer {
-  background-color: var(--secondary-color);
+  background-color: var(--primary-color);
   color: white;
   text-align: center;
   padding: 2rem;
@@ -226,9 +226,8 @@ li {
 }
 
 li:hover {
-  transform: translateX(5px);
-
-  background: var(--secondary-color);
+  /* transform: translateX(5px); */
+  padding: 20px;
   color: white;
 }
 
