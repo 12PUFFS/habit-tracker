@@ -18,14 +18,21 @@ function App() {
     localStorage.setItem('completedHabits', JSON.stringify(completedHabits));
   }, [habits, completedHabits]);
 
-  const addHabits = () => {
+  const addHabit = () => {
     if (inputValue.trim()) {
-      setHabits([{ id: Date.now(), text: inputValue }, ...habits]);
+      setHabits([
+        {
+          id: Date.now(),
+          text: inputValue,
+          important: false,
+        },
+        ...habits,
+      ]);
       setInputValue('');
     }
   };
 
-  const deleteHabits = (id) => {
+  const deleteHabit = (id) => {
     setHabits(habits.filter((habit) => habit.id !== id));
     setCompletedHabits(completedHabits.filter((habit) => habit.id !== id));
   };
@@ -37,23 +44,37 @@ function App() {
 
     if (habit) {
       if (habits.some((h) => h.id === id)) {
-        // Перемещаем из активных в выполненные
         setHabits(habits.filter((h) => h.id !== id));
         setCompletedHabits([habit, ...completedHabits]);
       } else {
-        // Перемещаем из выполненных обратно в активные
         setCompletedHabits(completedHabits.filter((h) => h.id !== id));
         setHabits([habit, ...habits]);
       }
     }
   };
 
-  const filteredHabits =
-    activeFilter === 'completed'
-      ? completedHabits
-      : activeFilter === 'active'
-      ? habits
-      : [...habits, ...completedHabits];
+  const toggleImportant = (id) => {
+    setHabits(
+      habits.map((habit) =>
+        habit.id === id ? { ...habit, important: !habit.important } : habit
+      )
+    );
+  };
+
+  const filteredHabits = () => {
+    switch (activeFilter) {
+      case 'completed':
+        return completedHabits;
+      case 'active':
+        return habits;
+      case 'important':
+        return [...habits, ...completedHabits].filter(
+          (habit) => habit.important
+        );
+      default:
+        return [...habits, ...completedHabits];
+    }
+  };
 
   return (
     <div className="app-container">
@@ -65,9 +86,9 @@ function App() {
               type="text"
               placeholder="Новая задача"
               value={inputValue}
-              onKeyPress={(e) => e.key === 'Enter' && addHabits()}
+              onKeyPress={(e) => e.key === 'Enter' && addHabit()}
             />
-            <button className="btn" onClick={addHabits}>
+            <button className="btn" onClick={addHabit}>
               Добавить задачу
             </button>
             <div className="filter">
@@ -91,30 +112,49 @@ function App() {
               >
                 Выполненные
               </div>
+              <div
+                className={`link ${
+                  activeFilter === 'important' ? 'active' : ''
+                }`}
+                onClick={() => setActiveFilter('important')}
+              >
+                Важные
+              </div>
             </div>
           </div>
 
-          {filteredHabits.length === 0 ? (
+          {filteredHabits().length === 0 ? (
             <div className="empty-state">
               <p>
                 {activeFilter === 'completed'
                   ? 'Нет выполненных задач'
+                  : activeFilter === 'important'
+                  ? 'Нет важных задач'
                   : 'Список задач пуст. Добавьте первую задачу!'}
               </p>
             </div>
           ) : (
             <ul>
-              {filteredHabits.map((habit) => (
+              {filteredHabits().map((habit) => (
                 <li
                   key={habit.id}
-                  className={
-                    completedHabits.some((h) => h.id === habit.id)
-                      ? 'completed'
-                      : ''
-                  }
+                  className={`
+                    ${
+                      completedHabits.some((h) => h.id === habit.id)
+                        ? 'completed'
+                        : ''
+                    }
+                    ${habit.important ? 'important' : ''}
+                  `}
                 >
                   {habit.text}
                   <div className="divs">
+                    <span
+                      className={`star ${habit.important ? 'active' : ''}`}
+                      onClick={() => toggleImportant(habit.id)}
+                    >
+                      ★
+                    </span>
                     <span
                       className={`done ${
                         completedHabits.some((h) => h.id === habit.id)
@@ -127,7 +167,7 @@ function App() {
                     </span>
                     <span
                       className="delete"
-                      onClick={() => deleteHabits(habit.id)}
+                      onClick={() => deleteHabit(habit.id)}
                     >
                       ×
                     </span>
