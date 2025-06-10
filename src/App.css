@@ -60,10 +60,10 @@ body,
 }
 
 /* Стили для важных задач */
-.important {
+/* .important {
   border-left: 4px solid #f72585;
   background-color: rgba(247, 37, 133, 0.05);
-}
+} */
 
 .star {
   color: #adb5bd;
@@ -74,7 +74,7 @@ body,
 }
 
 .star.active {
-  color: #f72585;
+  color: #f7d425;
 }
 
 .star:hover {
@@ -83,9 +83,9 @@ body,
 
 /* Адаптивные стили */
 @media (max-width: 768px) {
-  .filter {
+  /* .filter {
     flex-wrap: wrap;
-  }
+  } */
 
   .link {
     margin-bottom: 8px;
