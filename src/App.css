@@ -1,28 +1,26 @@
-/* :root {
-  --primary-color: #0f2027;
-  --secondary-color: #203a43;
 
-  --text-color: #ffffff;
-  --light-gray: #e0e0e0;
-  --border-radius: 12px;
-  --success: #2ecc71;
-  --box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-} */
+
+
 
 :root {
   --primary-color: #1d3cc8;
   --secondary-color: #676a79e3;
   --text-color: #2b2d42;
-  --light-gray: #f8f9fa;
+  --light-gray: #f5f3f0;
   --border-radius: 12px;
   --success: #51be55;
-  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  --box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+  --gold-accent: #c4a76c;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body{
+  background: var(  --light-gray);
 }
 
 #root {
@@ -93,9 +91,10 @@ body,
 }
 
 .footer a {
-  color: white;
-  text-decoration: none;
-  padding-left: 3px;
+  color: var(--gold-accent);
+    text-decoration: none;
+    padding-left: 5px;
+
 }
 
 .footer p:not(:last-child) {
@@ -112,6 +111,7 @@ body,
   /* display: flex;
   flex-direction: column; */
   padding: 2rem;
+  box-shadow: var(--box-shadow);
 }
 
 .input-container {
@@ -405,7 +405,7 @@ li.completed:hover .habit-text {
   .link {
     width: 100%;
     margin: 10px 5px;
-    padding: 5px;
+    padding: 7px;
 
   }
 
