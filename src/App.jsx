@@ -12,11 +12,21 @@ function App() {
     return savedCompleted ? JSON.parse(savedCompleted) : [];
   });
   const [activeFilter, setActiveFilter] = useState('all');
+  const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
 
   useEffect(() => {
     localStorage.setItem('habits', JSON.stringify(habits));
     localStorage.setItem('completedHabits', JSON.stringify(completedHabits));
   }, [habits, completedHabits]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
 
   const addHabit = () => {
     if (inputValue.trim()) {
@@ -76,7 +86,6 @@ function App() {
     }
   };
 
-  // Компонент для свайпа
   const SwipeableItem = ({ habit, children }) => {
     const [startX, setStartX] = useState(0);
     const [currentX, setCurrentX] = useState(0);
@@ -94,7 +103,6 @@ function App() {
       const x = e.touches[0].clientX;
       setCurrentX(x);
 
-      // Ограничиваем максимальное смещение
       const deltaX = startX - x;
       if (deltaX > 0 && deltaX < 100) {
         itemRef.current.style.transform = `translateX(-${deltaX}px)`;
@@ -106,7 +114,6 @@ function App() {
 
       const deltaX = startX - currentX;
       if (deltaX > 60) {
-        // Порог для удаления
         itemRef.current.style.transform = 'translateX(-100%)';
         setTimeout(() => deleteHabit(habit.id), 300);
       } else {
@@ -147,36 +154,42 @@ function App() {
               value={inputValue}
               onKeyPress={(e) => e.key === 'Enter' && addHabit()}
             />
-            <div className="filter">
-              <div
-                className={`link ${activeFilter === 'all' ? 'active' : ''}`}
-                onClick={() => setActiveFilter('all')}
-              >
-                Все
+
+            {/* Фильтры для десктопов */}
+            {!isMobile && (
+              <div className="filter">
+                <div
+                  className={`link ${activeFilter === 'all' ? 'active' : ''}`}
+                  onClick={() => setActiveFilter('all')}
+                >
+                  Все
+                </div>
+                <div
+                  className={`link ${
+                    activeFilter === 'active' ? 'active' : ''
+                  }`}
+                  onClick={() => setActiveFilter('active')}
+                >
+                  Активные
+                </div>
+                <div
+                  className={`link ${
+                    activeFilter === 'completed' ? 'active' : ''
+                  }`}
+                  onClick={() => setActiveFilter('completed')}
+                >
+                  Выполненные
+                </div>
+                <div
+                  className={`link gold ${
+                    activeFilter === 'important' ? 'active' : ''
+                  }`}
+                  onClick={() => setActiveFilter('important')}
+                >
+                  Важные
+                </div>
               </div>
-              <div
-                className={`link ${activeFilter === 'active' ? 'active' : ''}`}
-                onClick={() => setActiveFilter('active')}
-              >
-                Активные
-              </div>
-              <div
-                className={`link ${
-                  activeFilter === 'completed' ? 'active' : ''
-                }`}
-                onClick={() => setActiveFilter('completed')}
-              >
-                Выполненные
-              </div>
-              <div
-                className={`link gold ${
-                  activeFilter === 'important' ? 'active' : ''
-                }`}
-                onClick={() => setActiveFilter('important')}
-              >
-                Важные
-              </div>
-            </div>
+            )}
           </div>
 
           {filteredHabits().length === 0 ? (
@@ -251,6 +264,40 @@ function App() {
           )}
         </div>
       </div>
+
+      {/* Нижняя навигация только для мобильных */}
+      {isMobile && (
+        <nav className="bottom-nav">
+          <button
+            className={`nav-btn ${activeFilter === 'all' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('all')}
+          >
+            Все
+          </button>
+          <button
+            className={`nav-btn ${activeFilter === 'active' ? 'active' : ''}`}
+            onClick={() => setActiveFilter('active')}
+          >
+            Активные
+          </button>
+          <button
+            className={`nav-btn ${
+              activeFilter === 'completed' ? 'active' : ''
+            }`}
+            onClick={() => setActiveFilter('completed')}
+          >
+            Выполненные
+          </button>
+          <button
+            className={`nav-btn ${
+              activeFilter === 'important' ? 'active' : ''
+            }`}
+            onClick={() => setActiveFilter('important')}
+          >
+            Важные
+          </button>
+        </nav>
+      )}
       <footer className="footer">
         <p>© 2025 Приложение для задач</p>
         <p>
