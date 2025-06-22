@@ -263,41 +263,41 @@ function App() {
             </ul>
           )}
         </div>
+        {/* Нижняя навигация только для мобильных */}
+        {isMobile && (
+          <nav className="bottom-nav">
+            <button
+              className={`nav-btn ${activeFilter === 'all' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('all')}
+            >
+              Все
+            </button>
+            <button
+              className={`nav-btn ${activeFilter === 'active' ? 'active' : ''}`}
+              onClick={() => setActiveFilter('active')}
+            >
+              Активные
+            </button>
+            <button
+              className={`nav-btn ${
+                activeFilter === 'completed' ? 'active' : ''
+              }`}
+              onClick={() => setActiveFilter('completed')}
+            >
+              Выполненные
+            </button>
+            <button
+              className={`nav-btn gold ${
+                activeFilter === 'important' ? 'active' : ''
+              }`}
+              onClick={() => setActiveFilter('important')}
+            >
+              Важные
+            </button>
+          </nav>
+        )}
       </div>
 
-      {/* Нижняя навигация только для мобильных */}
-      {isMobile && (
-        <nav className="bottom-nav">
-          <button
-            className={`nav-btn ${activeFilter === 'all' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('all')}
-          >
-            Все
-          </button>
-          <button
-            className={`nav-btn ${activeFilter === 'active' ? 'active' : ''}`}
-            onClick={() => setActiveFilter('active')}
-          >
-            Активные
-          </button>
-          <button
-            className={`nav-btn ${
-              activeFilter === 'completed' ? 'active' : ''
-            }`}
-            onClick={() => setActiveFilter('completed')}
-          >
-            Выполненные
-          </button>
-          <button
-            className={`nav-btn ${
-              activeFilter === 'important' ? 'active' : ''
-            }`}
-            onClick={() => setActiveFilter('important')}
-          >
-            Важные
-          </button>
-        </nav>
-      )}
       <footer className="footer">
         <p>© 2025 Приложение для задач</p>
         <p>
