@@ -398,6 +398,10 @@ li.completed:hover .habit-text {
     flex-direction: column;
   }
 
+  .delete{
+    display: none;
+  }
+
   .filter {
     gap: 30px;
     /* margin: 0 5px; */

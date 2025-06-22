@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import './App.css';
 
 function App() {
@@ -76,6 +76,65 @@ function App() {
     }
   };
 
+  // Компонент для свайпа
+  const SwipeableItem = ({ habit, children }) => {
+    const [startX, setStartX] = useState(0);
+    const [currentX, setCurrentX] = useState(0);
+    const [isSwiping, setIsSwiping] = useState(false);
+    const itemRef = useRef(null);
+
+    const handleTouchStart = (e) => {
+      setStartX(e.touches[0].clientX);
+      setCurrentX(e.touches[0].clientX);
+      setIsSwiping(true);
+    };
+
+    const handleTouchMove = (e) => {
+      if (!isSwiping) return;
+      const x = e.touches[0].clientX;
+      setCurrentX(x);
+
+      // Ограничиваем максимальное смещение
+      const deltaX = startX - x;
+      if (deltaX > 0 && deltaX < 100) {
+        itemRef.current.style.transform = `translateX(-${deltaX}px)`;
+      }
+    };
+
+    const handleTouchEnd = () => {
+      if (!isSwiping) return;
+
+      const deltaX = startX - currentX;
+      if (deltaX > 60) {
+        // Порог для удаления
+        itemRef.current.style.transform = 'translateX(-100%)';
+        setTimeout(() => deleteHabit(habit.id), 300);
+      } else {
+        itemRef.current.style.transform = 'translateX(0)';
+      }
+
+      setIsSwiping(false);
+      setStartX(0);
+      setCurrentX(0);
+    };
+
+    return (
+      <div
+        ref={itemRef}
+        className="swipeable-item"
+        onTouchStart={handleTouchStart}
+        onTouchMove={handleTouchMove}
+        onTouchEnd={handleTouchEnd}
+        style={{
+          transition: isSwiping ? 'none' : 'transform 0.3s ease',
+        }}
+      >
+        {children}
+        <div className="swipe-delete-indicator"></div>
+      </div>
+    );
+  };
+
   return (
     <div className="app-container">
       <div className="content">
@@ -88,9 +147,6 @@ function App() {
               value={inputValue}
               onKeyPress={(e) => e.key === 'Enter' && addHabit()}
             />
-            {/* <button className="btn" onClick={addHabit}>
-              Добавить задачу
-            </button> */}
             <div className="filter">
               <div
                 className={`link ${activeFilter === 'all' ? 'active' : ''}`}
@@ -134,50 +190,62 @@ function App() {
               </p>
             </div>
           ) : (
-            <ul>
+            <ul className="habits-list">
               {filteredHabits().map((habit) => (
-                <li
-                  key={habit.id}
-                  className={`
-                    ${
-                      completedHabits.some((h) => h.id === habit.id)
-                        ? 'completed'
-                        : ''
-                    }
-                    ${habit.important ? 'important' : ''}
-                  `}
-                >
-                  {habit.text}
-                  <div className="divs">
-                    <span
-                      className={`star ${habit.important ? 'active' : ''}`}
-                      onClick={() => toggleImportant(habit.id)}
-                    >
-                      ★
-                    </span>
-                    <span
-                      className={`done ${
+                <SwipeableItem key={habit.id} habit={habit}>
+                  <li
+                    className={`
+                      ${
                         completedHabits.some((h) => h.id === habit.id)
                           ? 'completed'
                           : ''
-                      }`}
-                      onClick={() => toggleComplete(habit.id)}
-                      style={{
-                        display: completedHabits.some((h) => h.id === habit.id)
-                          ? 'none'
-                          : 'inline-block',
-                      }}
-                    >
-                      ✓
-                    </span>
-                    <span
-                      className="delete"
-                      onClick={() => deleteHabit(habit.id)}
-                    >
-                      ×
-                    </span>
-                  </div>
-                </li>
+                      }
+                      ${habit.important ? 'important' : ''}
+                    `}
+                  >
+                    {habit.text}
+                    <div className="divs">
+                      <span
+                        className={`star ${habit.important ? 'active' : ''}`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleImportant(habit.id);
+                        }}
+                      >
+                        ★
+                      </span>
+                      <span
+                        className={`done ${
+                          completedHabits.some((h) => h.id === habit.id)
+                            ? 'completed'
+                            : ''
+                        }`}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          toggleComplete(habit.id);
+                        }}
+                        style={{
+                          display: completedHabits.some(
+                            (h) => h.id === habit.id
+                          )
+                            ? 'none'
+                            : 'inline-block',
+                        }}
+                      >
+                        ✓
+                      </span>
+                      <span
+                        className="delete"
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          deleteHabit(habit.id);
+                        }}
+                      >
+                        ×
+                      </span>
+                    </div>
+                  </li>
+                </SwipeableItem>
               ))}
             </ul>
           )}
