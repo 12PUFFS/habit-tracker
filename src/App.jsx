@@ -162,6 +162,11 @@ function App() {
                           : ''
                       }`}
                       onClick={() => toggleComplete(habit.id)}
+                      style={{
+                        display: completedHabits.some((h) => h.id === habit.id)
+                          ? 'none'
+                          : 'inline-block',
+                      }}
                     >
                       ✓
                     </span>
