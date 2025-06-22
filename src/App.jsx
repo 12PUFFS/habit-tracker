@@ -88,9 +88,9 @@ function App() {
               value={inputValue}
               onKeyPress={(e) => e.key === 'Enter' && addHabit()}
             />
-            <button className="btn" onClick={addHabit}>
+            {/* <button className="btn" onClick={addHabit}>
               Добавить задачу
-            </button>
+            </button> */}
             <div className="filter">
               <div
                 className={`link ${activeFilter === 'all' ? 'active' : ''}`}
@@ -113,7 +113,7 @@ function App() {
                 Выполненные
               </div>
               <div
-                className={`link ${
+                className={`link gold ${
                   activeFilter === 'important' ? 'active' : ''
                 }`}
                 onClick={() => setActiveFilter('important')}
