@@ -205,7 +205,7 @@ body,
   border: none;
 }
 
-.link:hover {
+.link:not(:last-child):hover {
   color: white;
   padding: 10px;
   background: var(--primary-color);
@@ -213,6 +213,12 @@ body,
   border-radius: var(--border-radius);
   transition: all 0.5s ease;
 }
+
+.active:last-child{
+  background: var(--gold-accent);
+}
+
+
 
 h1 {
   color: var(--primary-color);
@@ -231,7 +237,7 @@ input {
   transition: all 0.3s ease;
   box-shadow: var(--box-shadow);
   font-weight: 700;
-  color: var(--text-color);
+  color: var(--primary-color);
 }
 
 input:focus {
@@ -261,7 +267,7 @@ ul {
   padding: 0;
   background: aliceblue;
   box-shadow: var(--box-shadow);
-  padding: 10px;
+  padding: 30px;
 }
 
 
@@ -449,12 +455,14 @@ li.completed:hover .habit-text {
 
   }
 
+  
+
   ul {
     padding: 10px;
   }
 
   input {
-    margin-bottom: 20px;
+    margin-bottom: 0;
   }
 
   .filter {
